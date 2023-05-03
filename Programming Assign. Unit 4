@@ -1,0 +1,63 @@
+package src;
+
+public class Quiz {
+    public static void main(String[] args) {
+        MultipleChoiceQuestion question1 = new MultipleChoiceQuestion(
+            "Which one of the following is a programming language?",
+            "Java",
+            "HTML",
+            "CSS",
+            "XML",
+            "SQL",
+            "A"
+        );
+        question1.check();
+
+        MultipleChoiceQuestion question2 = new MultipleChoiceQuestion(
+            "Which one of the following is a web markup language?",
+            "C++",
+            "HTML",
+            "JavaScript",
+            "Python",
+            "Swift",
+            "B"
+        );
+        question2.check();
+
+        MultipleChoiceQuestion question3 = new MultipleChoiceQuestion(
+            "Which one of the following is a scripting language?",
+            "C#",
+            "PHP",
+            "Ruby",
+            "Go",
+            "Kotlin",
+            "C"
+        );
+        question3.check();
+
+        // Add at least two new questions
+        MultipleChoiceQuestion question4 = new MultipleChoiceQuestion(
+            "New question?",
+            "Choice A",
+            "Choice B",
+            "Choice C",
+            "Choice D",
+            "Choice E",
+            "B"
+        );
+        question4.check();
+
+        MultipleChoiceQuestion question5 = new MultipleChoiceQuestion(
+            "Another new question?",
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D",
+            "Option E",
+            "C"
+        );
+        question5.check();
+
+        MultipleChoiceQuestion.showResults();
+    }
+}
