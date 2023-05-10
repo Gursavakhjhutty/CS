@@ -1,35 +1,27 @@
+package src;
+
 import javax.swing.JOptionPane;
 
 public class TrueFalseQuestion extends Question {
     public TrueFalseQuestion(String question, String answer) {
-        this.question = question;
-        this.correctAnswer = answer.toUpperCase();
+        this.question = "TRUE or FALSE: " + question;
+        this.correctAnswer = answer.equals("true") || answer.equals("yes") ? "TRUE" : "FALSE";
     }
 
-    @Override
     public String ask() {
+        return ask(question);
+    }
+
+    private String ask(String question) {
         while (true) {
-            String answer = JOptionPane.showInputDialog(question + " (True/False)");
+            String answer = JOptionPane.showInputDialog(question);
             answer = answer.toUpperCase();
 
-            if (isValidAnswer(answer)) {
-                return convertAnswer(answer);
+            if (answer.equals("TRUE") || answer.equals("FALSE")) {
+                return answer;
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid answer. Please enter TRUE or FALSE.");
             }
-        }
-    }
-
-    private boolean isValidAnswer(String answer) {
-        return answer.equals("F") || answer.equals("FALSE") || answer.equals("N") || answer.equals("NO")
-                || answer.equals("T") || answer.equals("TRUE") || answer.equals("Y") || answer.equals("YES");
-    }
-
-    private String convertAnswer(String answer) {
-        if (answer.equals("F") || answer.equals("FALSE") || answer.equals("N") || answer.equals("NO")) {
-            return "FALSE";
-        } else {
-            return "TRUE";
         }
     }
 }
