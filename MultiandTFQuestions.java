@@ -2,7 +2,7 @@ package src;
 
 import javax.swing.JOptionPane;
 
-public class Quiz {
+public class MultiandTFQuestions {
     static int nQuestions = 0;
     static int nCorrect = 0;
 
