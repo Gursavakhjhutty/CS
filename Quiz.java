@@ -1,39 +1,51 @@
 package src;
+
 import javax.swing.JOptionPane;
+
 public class Quiz {
     static int nQuestions = 0;
     static int nCorrect = 0;
+
     public static void main(String[] args) {
-        String question1 = "Which one of the following is a programming language?\n";
-        question1 += "A. Java\n";
-        question1 += "B. HTML\n";
-        question1 += "C. CSS\n";
-        question1 += "D. XML\n";
-        question1 += "E. SQL\n";
-        check(question1, "A");
+        MultipleChoiceQuestion question1 = new MultipleChoiceQuestion(
+            "Which one of the following is a programming language?",
+            "Java",
+            "HTML",
+            "CSS",
+            "XML",
+            "SQL",
+            "A"
+        );
+        check(question1);
 
-        String question2 = "Which one of the following is a web markup language?\n";
-        question2 += "A. C++\n";
-        question2 += "B. HTML\n";
-        question2 += "C. JavaScript\n";
-        question2 += "D. Python\n";
-        question2 += "E. Swift\n";
-        check(question2, "B");
+        MultipleChoiceQuestion question2 = new MultipleChoiceQuestion(
+            "Which one of the following is a web markup language?",
+            "C++",
+            "HTML",
+            "JavaScript",
+            "Python",
+            "Swift",
+            "B"
+        );
+        check(question2);
 
-        String question3 = "Which one of the following is a scripting language?\n";
-        question3 += "A. C#\n";
-        question3 += "B. PHP\n";
-        question3 += "C. Ruby\n";
-        question3 += "D. Go\n";
-        question3 += "E. Kotlin\n";
-        check(question3, "C");
+        MultipleChoiceQuestion question3 = new MultipleChoiceQuestion(
+            "Which one of the following is a scripting language?",
+            "C#",
+            "PHP",
+            "Ruby",
+            "Go",
+            "Kotlin",
+            "C"
+        );
+        check(question3);
 
         JOptionPane.showMessageDialog(null, nCorrect + " correct out of " + nQuestions + " questions");
     }
 
-    static String ask(String question) {
+    static String ask(MultipleChoiceQuestion question1) {
         while (true) {
-            String answer = JOptionPane.showInputDialog(question);
+            String answer = JOptionPane.showInputDialog(question1.question);
             answer = answer.toUpperCase();
 
             if (answer.equals("A") || answer.equals("B") || answer.equals("C") || answer.equals("D") || answer.equals("E")) {
@@ -44,15 +56,15 @@ public class Quiz {
         }
     }
 
-    static void check(String question, String correctAnswer) {
+    static void check(MultipleChoiceQuestion question1) {
         nQuestions++;
-        String answer = ask(question);
+        String answer = ask(question1);
 
-        if (answer.equals(correctAnswer)) {
+        if (answer.equals(question1.correctAnswer)) {
             nCorrect++;
             JOptionPane.showMessageDialog(null, "Correct!");
         } else {
-            JOptionPane.showMessageDialog(null, "Incorrect. The correct answer is " + correctAnswer + ".");
+            JOptionPane.showMessageDialog(null, "Incorrect. The correct answer is " + question1.correctAnswer + ".");
         }
     }
 }
