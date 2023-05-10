@@ -1,28 +1,30 @@
-public abstract class Question {
-    protected static int nQuestions = 0;
-    protected static int nCorrect = 0;
+package src;
 
+import javax.swing.JOptionPane;
+
+public abstract class Question {
+    static int nQuestions = 0;
+    static int nCorrect = 0;
     protected String question;
     protected String correctAnswer;
 
+    public abstract String ask();
+
     public void check() {
-        String answer = ask();
         nQuestions++;
+        String answer = ask();
 
         if (answer.equals(correctAnswer)) {
-            System.out.println("Correct!");
             nCorrect++;
+            JOptionPane.showMessageDialog(null, "Correct!");
         } else {
-            System.out.println("Incorrect. The correct answer is: " + correctAnswer);
+            JOptionPane.showMessageDialog(null, "Incorrect. The correct answer is " + correctAnswer + ".");
         }
     }
 
     public static void showResults() {
-        System.out.println("Total questions: " + nQuestions);
-        System.out.println("Correct answers: " + nCorrect);
+        JOptionPane.showMessageDialog(null, "Total questions: " + nQuestions + "\nCorrect answers: " + nCorrect);
         double percentage = (double) nCorrect / nQuestions * 100;
-        System.out.println("Percentage correct: " + percentage + "%");
+        JOptionPane.showMessageDialog(null, "Percentage correct: " + percentage + "%");
     }
-
-    abstract String ask();
 }
