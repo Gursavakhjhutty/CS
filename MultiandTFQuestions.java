@@ -8,7 +8,7 @@ public class MultiandTFQuestions {
 
     public static void main(String[] args) {
         // Multiple-choice questions
-        MultipleChoiceQuestion question1 = new MultipleChoiceQuestion(
+        Question question1 = new MultipleChoiceQuestion(
             "Which one of the following is a programming language?",
             "Java",
             "HTML",
@@ -19,7 +19,7 @@ public class MultiandTFQuestions {
         );
         question1.check();
 
-        MultipleChoiceQuestion question2 = new MultipleChoiceQuestion(
+        Question question2 = new MultipleChoiceQuestion(
             "Which one of the following is a web markup language?",
             "C++",
             "HTML",
@@ -30,7 +30,7 @@ public class MultiandTFQuestions {
         );
         question2.check();
 
-        MultipleChoiceQuestion question3 = new MultipleChoiceQuestion(
+        Question question3 = new MultipleChoiceQuestion(
             "Which one of the following is a scripting language?",
             "C#",
             "PHP",
@@ -41,7 +41,7 @@ public class MultiandTFQuestions {
         );
         question3.check();
 
-        MultipleChoiceQuestion question4 = new MultipleChoiceQuestion(
+        Question question4 = new MultipleChoiceQuestion(
             "What is the default access modifier for a class in Java?",
             "public",
             "private",
@@ -52,7 +52,7 @@ public class MultiandTFQuestions {
         );
         question4.check();
 
-        MultipleChoiceQuestion question5 = new MultipleChoiceQuestion(
+        Question question5 = new MultipleChoiceQuestion(
             "Which of the following data types can store a null value in Java?",
             "int",
             "float",
@@ -64,22 +64,22 @@ public class MultiandTFQuestions {
         question5.check();
 
         // True/false questions
-        TrueFalseQuestion question6 = new TrueFalseQuestion("The Earth is flat.", "False");
+        Question question6 = new TrueFalseQuestion("The Earth is flat.", "False");
         question6.check();
 
-        TrueFalseQuestion question7 = new TrueFalseQuestion("Water boils at 100 degrees Celsius.", "True");
+        Question question7 = new TrueFalseQuestion("Water boils at 100 degrees Celsius.", "True");
         question7.check();
 
-        TrueFalseQuestion question8 = new TrueFalseQuestion("The sun rises in the west.", "False");
+        Question question8 = new TrueFalseQuestion("The sun rises in the west.", "False");
         question8.check();
 
-        TrueFalseQuestion question9 = new TrueFalseQuestion("Humans have five senses.", "False");
+        Question question9 = new TrueFalseQuestion("Humans have five senses.", "False");
         question9.check();
 
-        TrueFalseQuestion question10 = new TrueFalseQuestion("Gravity is a force of attraction between objects.", "True");
+        Question question10 = new TrueFalseQuestion("Gravity is a force of attraction between objects.", "True");
         question10.check();
 
-        showResults();
+        Question.showResults();
     }
 
     static String ask(String question) {
@@ -98,19 +98,13 @@ public class MultiandTFQuestions {
 
     static void check(Question question) {
         nQuestions++;
-        String answer = ask(question.getQuestion());
+        String answer = ask(question.ask());
 
-        if (answer.equals(question.getCorrectAnswer())) {
+        if (answer.equals(question.correctAnswer)) {
             nCorrect++;
             JOptionPane.showMessageDialog(null, "Correct!");
         } else {
-            JOptionPane.showMessageDialog(null, "Incorrect. The correct answer is " + question.getCorrectAnswer() + ".");
+            JOptionPane.showMessageDialog(null, "Incorrect. The correct answer is " + question.correctAnswer + ".");
         }
-    }
-
-    static void showResults() {
-        JOptionPane.showMessageDialog(null, "Total questions: " + nQuestions + "\nCorrect answers: " + nCorrect);
-        double percentage = (double) nCorrect / nQuestions * 100;
-        JOptionPane.showMessageDialog(null, "Percentage correct: " + percentage + "%");
     }
 }
