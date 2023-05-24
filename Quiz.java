@@ -16,7 +16,7 @@ public class Quiz {
             "SQL",
             "A"
         );
-        check(question1);
+        question1.check();
 
         MultipleChoiceQuestion question2 = new MultipleChoiceQuestion(
             "Which one of the following is a web markup language?",
@@ -27,7 +27,7 @@ public class Quiz {
             "Swift",
             "B"
         );
-        check(question2);
+        question2.check();
 
         MultipleChoiceQuestion question3 = new MultipleChoiceQuestion(
             "Which one of the following is a scripting language?",
@@ -38,33 +38,8 @@ public class Quiz {
             "Kotlin",
             "C"
         );
-        check(question3);
+        question3.check();
 
         JOptionPane.showMessageDialog(null, nCorrect + " correct out of " + nQuestions + " questions");
-    }
-
-    static String ask(MultipleChoiceQuestion question1) {
-        while (true) {
-            String answer = JOptionPane.showInputDialog(question1.question);
-            answer = answer.toUpperCase();
-
-            if (answer.equals("A") || answer.equals("B") || answer.equals("C") || answer.equals("D") || answer.equals("E")) {
-                return answer;
-            } else {
-                JOptionPane.showMessageDialog(null, "Invalid answer. Please enter A, B, C, D, or E.");
-            }
-        }
-    }
-
-    static void check(MultipleChoiceQuestion question1) {
-        nQuestions++;
-        String answer = ask(question1);
-
-        if (answer.equals(question1.correctAnswer)) {
-            nCorrect++;
-            JOptionPane.showMessageDialog(null, "Correct!");
-        } else {
-            JOptionPane.showMessageDialog(null, "Incorrect. The correct answer is " + question1.correctAnswer + ".");
-        }
     }
 }
