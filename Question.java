@@ -1,14 +1,25 @@
 package src;
 
-import javax.swing.JOptionPane;
+import java.awt.*;
+import javax.swing.*;
 
 public abstract class Question {
     static int nQuestions = 0;
     static int nCorrect = 0;
-    protected String question;
+    protected QuestionDialog question;
     protected String correctAnswer;
 
-    public abstract String ask();
+    public Question(String questionText) {
+        this.question = new QuestionDialog();
+        this.question.setLayout(new GridLayout(0,1));
+        this.question.add(new JLabel(" " + questionText + " ", JLabel.CENTER));
+    }
+
+    void initQuestionDialog() {
+        this.question.setModal(true);
+        this.question.pack();
+        this.question.setLocationRelativeTo(null);
+    }
 
     public void check() {
         nQuestions++;
@@ -20,6 +31,11 @@ public abstract class Question {
         } else {
             JOptionPane.showMessageDialog(null, "Incorrect. The correct answer is " + correctAnswer + ".");
         }
+    }
+
+    public String ask() {
+        question.setVisible(true);
+        return question.answer;
     }
 
     public static void showResults() {
