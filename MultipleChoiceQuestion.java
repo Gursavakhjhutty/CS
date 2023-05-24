@@ -1,44 +1,31 @@
 package src;
 
-import javax.swing.JOptionPane;
+import java.awt.*;
+import javax.swing.*;
 
 public class MultipleChoiceQuestion extends Question {
-    private String[] choices;
-    private String[] validAnswers;
+    public MultipleChoiceQuestion(String query, String a, String b, String c, String d, String e, String answer) {
+        super(query);
+        this.correctAnswer = answer;
 
-    public MultipleChoiceQuestion(String question, String... answers) {
-        this.question = question;
-        this.choices = new String[answers.length - 1];
-        this.validAnswers = new String[answers.length - 1];
-        this.correctAnswer = answers[answers.length - 1];
+        addChoice("A", a);
+        addChoice("B", b);
+        addChoice("C", c);
+        addChoice("D", d);
+        addChoice("E", e);
 
-        for (int i = 0; i < answers.length - 1; i++) {
-            this.choices[i] = answers[i];
-            this.validAnswers[i] = String.valueOf((char) (i + 65));
-        }
+        initQuestionDialog();
     }
 
-    public String ask() {
-        String fullQuestion = question + "\n";
-        for (int i = 0; i < choices.length; i++) {
-            fullQuestion += (char) (i + 65) + ": " + choices[i] + "\n";
-        }
+    void addChoice(String name, String label) {
+        JPanel choice = new JPanel(new BorderLayout());
 
-        return ask(fullQuestion);
-    }
+        JButton button = new JButton(name);
+        button.addActionListener(question);
 
-    private String ask(String question) {
-        while (true) {
-            String answer = JOptionPane.showInputDialog(question);
-            answer = answer.toUpperCase();
+        choice.add(button, BorderLayout.WEST);
+        choice.add(new JLabel(label + " ", JLabel.LEFT), BorderLayout.CENTER);
 
-            for (String validAnswer : validAnswers) {
-                if (answer.equals(validAnswer)) {
-                    return answer;
-                }
-            }
-
-            JOptionPane.showMessageDialog(null, "Invalid answer. Please enter " + String.join(", ", validAnswers) + ".");
-        }
+        question.add(choice);
     }
 }
